@@ -1,4 +1,8 @@
 # Byte-compiled / optimized / DLL files
+# Local feature worktrees and runtime probe state
+.worktrees/
+.probe/
+
 __pycache__/
 *.py[codz]
 *$py.class
