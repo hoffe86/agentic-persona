@@ -46,10 +46,6 @@ The shared `agentic-universe` catalog is hosted in
 an independent, optional plugin, not a second catalog or a bundle with core.
 Registering the catalog does not install either plugin.
 
-> **Pending publication:** The catalog rename and persona listing must be merged
-> and published in `hoffe86/agile-agents` before the marketplace commands below
-> can install this plugin.
-
 With approval, register the catalog and install the plugin persistently:
 
 ```sh
@@ -61,9 +57,9 @@ If `agentic-universe` is already registered, refresh its catalog with
 `copilot plugin marketplace update agentic-universe` instead of adding it again,
 then run the install command. Catalog refresh does not update installed plugins.
 
-> **Rename notice:** `agile-agents-marketplace` is being renamed to `agentic-universe`.
-> Existing registrations and plugin installations are not migrated automatically;
-> they need to be moved to the new name after the renamed catalog is published.
+> Registrations and plugin installations under the former
+> `agile-agents-marketplace` name are not migrated automatically to
+> `agentic-universe`.
 
 Alternatively, install directly without the shared catalog:
 
@@ -114,7 +110,6 @@ or skill invocation.
   start a new session pointing at it. Keep the prior checkout for rollback.
 - With approval, use named update/uninstall commands for persistent
   installations; confirm syntax in the selected runtime's help.
-  Persistent installation, update and uninstallation are not end-to-end verified.
 - Roll back a mount by selecting the prior checkout or omitting the flag.
   Restore an approved native-instruction copy from its backup with consent.
 - Inventory duplicate copies before activation. Remove only explicitly approved
@@ -131,7 +126,8 @@ git diff --check
 ```
 
 Static tests check packaging, resources, links, scope and consent rules.
-They do not prove model behavior.
+They do not exercise persistent installation, update or uninstallation, or prove
+model behavior.
 
 Package code and authored guidance use the [MIT license](LICENSE). Source
 attribution and third-party ownership qualifications are kept beside the
