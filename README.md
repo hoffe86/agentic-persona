@@ -21,8 +21,8 @@ Optional personal Copilot tooling with five skills:
   Repository standards and tooling win; no compliance certification, tool
   installation, architecture changes or reviewer edit rights are granted.
 
-The repository is [agentic-tools](https://github.com/hoffe86/agentic-tools);
-the plugin identity is `agentic-persona`. There is no name alias or marketplace.
+The repository is [agentic-persona](https://github.com/hoffe86/agentic-persona);
+the plugin identity is `agentic-persona`.
 The repository root is the plugin root; `.github/plugin/plugin.json` discovers
 `skills/`. No agents, hooks, MCP servers or automatic instruction injection are
 included.
@@ -39,13 +39,41 @@ This package does not require [Agile Agents](https://github.com/hoffe86/agile-ag
 Personal preferences cannot waive solution constraints, approvals or read-only
 boundaries. Surface conflicts; do not assume universal native prompt precedence.
 
-## Try locally
+## Install from the shared marketplace
 
-Use a checkout at a revision containing the package, not an earlier
-default-branch revision. From a solution directory:
+The shared `agentic-universe` catalog is hosted in
+[Agile Agents](https://github.com/hoffe86/agile-agents). This repository provides
+an independent, optional plugin, not a second catalog or a bundle with core.
+Registering the catalog does not install either plugin.
+
+With approval, register the catalog and install the plugin persistently:
 
 ```sh
-PLUGIN_DIR="/path/to/agentic-tools"
+copilot plugin marketplace add hoffe86/agile-agents
+copilot plugin install agentic-persona@agentic-universe
+```
+
+If `agentic-universe` is already registered, refresh its catalog with
+`copilot plugin marketplace update agentic-universe` instead of adding it again,
+then run the install command. Catalog refresh does not update installed plugins.
+
+> Registrations and plugin installations under the former
+> `agile-agents-marketplace` name are not migrated automatically to
+> `agentic-universe`.
+
+Alternatively, install directly without the shared catalog:
+
+```sh
+copilot plugin install hoffe86/agentic-persona
+```
+
+## Try locally
+
+For a process-local alternative, use a checkout containing the package.
+From a solution directory:
+
+```sh
+PLUGIN_DIR="/path/to/agentic-persona"
 copilot --no-auto-update --sync-session=off --plugin-dir "$PLUGIN_DIR"
 ```
 
@@ -64,7 +92,7 @@ This is not persistent activation or an OS sandbox.
 
 ## Native user instructions: separate opt-in
 
-Mounting this plugin **does not activate**
+Installing or mounting this plugin **does not activate**
 [native/copilot-instructions.md](native/copilot-instructions.md). Skills are
 on-demand; the manifest does not deliver arbitrary always-on instructions.
 
@@ -80,11 +108,8 @@ or skill invocation.
 
 - For a mount, inspect a newer revision in a separate checkout, run checks, then
   start a new session pointing at it. Keep the prior checkout for rollback.
-- With approval, once the package is on the repository's default branch, the
-  direct-repository install address is
-  `copilot plugin install hoffe86/agentic-tools`. Named update/uninstall commands
-  use `agentic-persona`; confirm syntax in the selected runtime's help.
-  Persistent installation, update and uninstallation are not end-to-end verified.
+- With approval, use named update/uninstall commands for persistent
+  installations; confirm syntax in the selected runtime's help.
 - Roll back a mount by selecting the prior checkout or omitting the flag.
   Restore an approved native-instruction copy from its backup with consent.
 - Inventory duplicate copies before activation. Remove only explicitly approved
@@ -101,12 +126,14 @@ git diff --check
 ```
 
 Static tests check packaging, resources, links, scope and consent rules.
-They do not prove model behavior.
+They do not exercise persistent installation, update or uninstallation, or prove
+model behavior.
 
 Package code and authored guidance use the [MIT license](LICENSE). Source
 attribution and third-party ownership qualifications are kept beside the
 affected skills and references.
 
 - [Official plugin reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference)
+- [Finding and installing plugins](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-finding-installing)
 - [Native instructions](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-custom-instructions)
 - [Configuration directory](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-config-dir-reference)

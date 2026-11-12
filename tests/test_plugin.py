@@ -44,7 +44,7 @@ class PluginContractTests(unittest.TestCase):
         self.assertRegex(manifest["version"], r"^\d+\.\d+\.\d+$")
         self.assertEqual(manifest["skills"], ["skills/"])
         self.assertEqual(manifest["license"], "MIT")
-        self.assertEqual(manifest["repository"], "https://github.com/hoffe86/agentic-tools")
+        self.assertEqual(manifest["repository"], "https://github.com/hoffe86/agentic-persona")
 
     def test_only_one_manifest_and_no_marketplace_or_injection_components(self):
         excluded = {".git", ".worktrees", "__pycache__", ".probe"}
