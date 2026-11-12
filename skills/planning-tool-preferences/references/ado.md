@@ -67,6 +67,13 @@ Re-read fields, links and comments; report partial failures explicitly.
 
 ## Sources
 
+Newly authored planning-tool guidance informed by
+[retired ADO guidance](https://github.com/hoffe86/agile-agents/blob/dd4710004eb257db39f781515dcfb2c07f58bdb6/plugins/agile-agents-ado/skills/ado-work-items/SKILL.md)
+(MIT; Copyright (c) 2026 hoffe86), without substantial copied text or a dependency
+on that package. Official sources below are paraphrased, not reproduced text or
+code; third-party documentation remains under its owners' terms, not this
+package's MIT license.
+
 - [Microsoft MCP examples](https://github.com/microsoft/azure-devops-mcp/blob/main/docs/EXAMPLES.md)
 - [Field references](https://learn.microsoft.com/en-us/azure/devops/boards/queries/titles-ids-descriptions?view=azure-devops)
 - [Bug/process differences](https://learn.microsoft.com/en-us/azure/devops/boards/backlogs/manage-bugs?view=azure-devops)

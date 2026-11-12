@@ -130,4 +130,9 @@ At session end, propose useful skill updates from new patterns, pitfalls, owner
 feedback, API quirks and bug causes/fixes. Edit only within approved maintenance
 scope; no implicit global-copy/settings changes. Record architecture rationale
 in the solution's authorized decision channel, not as a personal override.
-Keep history and provenance outside skill bodies.
+Keep maintenance history outside skill bodies.
+
+## Source
+
+Owner-authorized adaptation of the owner's personal `working-style` skill,
+not a byte-identical copy. Package changes do not modify that original.

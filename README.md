@@ -23,6 +23,9 @@ Optional personal Copilot tooling with five skills:
 
 The repository is [agentic-tools](https://github.com/hoffe86/agentic-tools);
 the plugin identity is `agentic-persona`. There is no name alias or marketplace.
+The repository root is the plugin root; `.github/plugin/plugin.json` discovers
+`skills/`. No agents, hooks, MCP servers or automatic instruction injection are
+included.
 
 ## Ownership
 
@@ -38,16 +41,16 @@ boundaries. Surface conflicts; do not assume universal native prompt precedence.
 
 ## Try locally
 
-Use an existing checkout containing the package; the unpublished feature is not
-available by cloning the default branch. From a solution directory:
+Use a checkout at a revision containing the package, not an earlier
+default-branch revision. From a solution directory:
 
 ```sh
 PLUGIN_DIR="/path/to/agentic-tools"
 copilot --no-auto-update --sync-session=off --plugin-dir "$PLUGIN_DIR"
 ```
 
-Check the selected runtime's help (CLI 1.0.105 supports these flags); do not
-upgrade implicitly. Keep interactive approvals. Ask:
+Check the selected runtime's help for supported flags; do not assume support
+across versions or upgrade implicitly. Keep interactive approvals. Ask:
 
 > Invoke working-style using the native skill tool and report its source directory.
 
@@ -77,17 +80,18 @@ or skill invocation.
 
 - For a mount, inspect a newer revision in a separate checkout, run checks, then
   start a new session pointing at it. Keep the prior checkout for rollback.
-- After publication and approval, the direct-repository install address is
+- With approval, once the package is on the repository's default branch, the
+  direct-repository install address is
   `copilot plugin install hoffe86/agentic-tools`. Named update/uninstall commands
   use `agentic-persona`; confirm syntax in the selected runtime's help.
-  Persistent delivery is not end-to-end verified.
+  Persistent installation, update and uninstallation are not end-to-end verified.
 - Roll back a mount by selecting the prior checkout or omitting the flag.
   Restore an approved native-instruction copy from its backup with consent.
 - Inventory duplicate copies before activation. Remove only explicitly approved
   copies with reversible backups; never delete the whole user skills directory.
   Updates do not authorize changes to native instructions or loose skills.
 
-## Checks and documentation
+## Checks and references
 
 No application build or dependencies are required; tests use Python 3.9+ stdlib:
 
@@ -96,9 +100,13 @@ python3 -B -m unittest discover -s tests -v
 git diff --check
 ```
 
-Static tests check packaging, links, license/provenance, scope and consent rules.
+Static tests check packaging, resources, links, scope and consent rules.
 They do not prove model behavior.
 
-- [Documentation hub](docs/README.md)
-- [Runtime contract and limitations](docs/compatibility.md)
-- [Source ownership and license](docs/provenance.md)
+Package code and authored guidance use the [MIT license](LICENSE). Source
+attribution and third-party ownership qualifications are kept beside the
+affected skills and references.
+
+- [Official plugin reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference)
+- [Native instructions](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-custom-instructions)
+- [Configuration directory](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-config-dir-reference)

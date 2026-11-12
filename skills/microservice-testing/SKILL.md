@@ -127,7 +127,11 @@ Return a compact plan/gap assessment or scoped implementation with test evidence
 
 ## Sources
 
-Primary guidance, paraphrased; platform-specific examples are not stack policy.
+Owner-authorized adaptation of the owner's `Microservice-Test-Concept.md`.
+The original concept and its attachments are not distributed or changed.
+The primary guidance below is paraphrased, not copied article text, sample code
+or diagrams. Third-party research remains under its respective ownership, not
+this package's MIT license. Platform-specific examples are not stack policy.
 
 - **Toby Clemson**, [*Testing Strategies in a Microservice Architecture*](https://martinfowler.com/articles/microservice-testing/),
   martinfowler.com, 18 November 2014 — boundaries, pyramid and E2E;

@@ -58,3 +58,8 @@ Read [platform preferences](references/platform-preferences.md) only for the
 matching technologies already selected: Terraform/GitHub naming and delivery,
 Azure compute/identity/configuration, and AI SSE/tools/UI/agent discovery.
 It is not a general deployment recipe or permission to migrate stacks.
+
+## Source
+
+Owner-authorized adaptation of the owner's personal `development-architecture`
+skill, not a byte-identical copy. Package changes do not modify that original.

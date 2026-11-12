@@ -62,3 +62,10 @@ linters/type checkers without scoped approval; repository formatting wins.
 Reviewers remain read-only: report findings and relevant commands, not execute
 the author workflow. Self-checks do not replace independent review. Report actual
 evidence, gaps and unresolved conflicts, never unverified compliance.
+
+## Sources
+
+Newly authored guidance, not an imported skill. The linked language and Clean
+Code Developer references attribute the official sources they paraphrase.
+No third-party documentation text, code examples or diagrams are copied;
+those sources remain under their owners' terms, not this package's MIT license.
