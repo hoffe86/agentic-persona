@@ -9,7 +9,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = {
     "working-style", "development-architecture", "microservice-testing",
-    "planning-tool-preferences", "coding-style",
+    "planning-tool-preferences", "coding-style", "git-workflow",
 }
 MANIFEST = ROOT / ".github/plugin/plugin.json"
 
@@ -61,15 +61,19 @@ class PluginContractTests(unittest.TestCase):
             for p in names
         ))
 
-    def test_exactly_the_five_selected_skills_and_required_resources(self):
+    def test_exactly_the_six_selected_skills_and_required_resources(self):
         self.assertEqual(
             {p.relative_to(ROOT / "skills").as_posix()
              for p in (ROOT / "skills").rglob("*") if p.is_file()},
             {
                 "working-style/SKILL.md",
+                "working-style/references/documentation.md",
                 "development-architecture/SKILL.md",
                 "development-architecture/references/platform-preferences.md",
+                "development-architecture/references/operations.md",
                 "microservice-testing/SKILL.md",
+                "microservice-testing/references/contract-testing.md",
+                "microservice-testing/references/sources.md",
                 "planning-tool-preferences/SKILL.md",
                 "planning-tool-preferences/references/ado.md",
                 "coding-style/SKILL.md",
@@ -77,6 +81,8 @@ class PluginContractTests(unittest.TestCase):
                 "coding-style/references/python.md",
                 "coding-style/references/typescript.md",
                 "coding-style/references/clean-code-developer.md",
+                "git-workflow/SKILL.md",
+                "git-workflow/references/releases.md",
             },
         )
         self.assertFalse(any(p.is_symlink() for p in (ROOT / "skills").rglob("*")))
@@ -108,6 +114,15 @@ class PluginContractTests(unittest.TestCase):
             read("skills/planning-tool-preferences/SKILL.md"),
             r"\[[^\]]+\]\(references/ado\.md\)",
         )
+
+    def test_working_style_links_to_scoped_guidance(self):
+        text = read("skills/working-style/SKILL.md")
+        for target in (
+            "references/documentation.md",
+            "../development-architecture/references/operations.md",
+        ):
+            with self.subTest(target=target):
+                self.assertIn(f"]({target})", text)
 
     def test_coding_skill_links_to_all_references(self):
         root = ROOT / "skills/coding-style"

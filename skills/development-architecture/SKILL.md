@@ -3,9 +3,9 @@ name: development-architecture
 description: >-
   The owner's optional architecture preferences: built-ins versus custom code,
   multi-repo ownership, environment promotion and API contracts. Use for personal
-  architecture guidance; consult the scoped reference only for solutions already
-  using the matching Azure, Terraform, SPA or AI streaming/agent technologies.
-  Does not choose a stack for unrelated solutions.
+  architecture, IaC, CI/CD and operations guidance; consult the scoped reference
+  only for solutions already using the matching Azure, Terraform, SPA or AI
+  streaming/agent technologies. Does not choose a stack for unrelated solutions.
 ---
 
 # Development and architecture preferences
@@ -39,6 +39,11 @@ there is no blanket .NET, Azure or microservices default.
   respect solution conventions.
 - Prefer reusable workflows, dev → staging → prod with main-gated staging/prod,
   and build-once promotion of the same container/artifact.
+
+## Operations
+
+For IaC, CI/CD, secret handling and resource naming, read the
+[operations preferences](references/operations.md).
 
 ## API contracts
 

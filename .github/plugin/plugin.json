@@ -1,7 +1,7 @@
 {
   "name": "agentic-persona",
   "version": "0.1.0",
-  "description": "Optional personal working style, architecture, microservice testing, planning-tool and coding-style preferences. Skills load on demand; native user instructions are a separate opt-in.",
+  "description": "Optional personal working style, architecture, microservice testing, planning-tool, coding-style and Git workflow preferences. Skills load on demand; native user instructions are a separate opt-in.",
   "author": {
     "name": "hoffe86",
     "url": "https://github.com/hoffe86"
