@@ -42,6 +42,15 @@ Read scoped instructions, existing tests, accepted contracts, CI and check comma
 Identify changed business behavior, consumers, dependency owners, relevant versions
 and costly failures. Ask only for material unknowns; mark evidence gaps.
 
+Select only scenarios and assertions that prove behavior or integration decisions
+our code owns. Do not re-test documented functionality, internals or built-in
+guarantees of third-party libraries or SDKs. Cover our configuration, supplied
+calls/options, data/error mapping, orchestration and custom retry/timeout policies,
+not the dependency's implementation of those features. For example, test that our
+gateway maps an SDK failure to the agreed application error, not that the SDK
+retries according to its documented defaults. Real-dependency integration tests
+remain valid when they prove our use of the dependency.
+
 Classify by **boundary and evidence**, not mocks, framework or process count.
 The pyramid is a cost/feedback heuristic: favor fast, focused tests and a few
 high-value broad ones, not fixed ratios or mandatory contract/component ordering.
@@ -57,22 +66,14 @@ high-value broad ones, not fixed ratios or mandatory contract/component ordering
 | Contract | Actual shared/versioned consumer expectations verified at the real provider boundary with controlled state | Supported consumers' interaction compatibility. Real HTTP with mocked internals alone proves an adapter, not consumer-driven compatibility. |
 | E2E | Explicit journey ends and real service chain; disclose excluded/stubbed third parties | Critical outcome and deployed wiring within those ends, not excluded-provider compatibility. |
 
-Never mock the client/driver under test. Assert verb/path directly or use a
-strict protocol stub; **verify interaction and result**. An ignored 404 proves
-nothing.
+When testing our gateway or persistence integration, exercise the real client or
+driver it uses; do not mock away the boundary being claimed. Assert verb/path
+directly or use a strict protocol stub; **verify interaction and result**.
+An ignored 404 proves nothing. In tests of business logic or orchestration,
+dependency clients may be doubled; these do not prove gateway/driver integration.
 
-Verify supported consumer/provider versions in the provider pipeline, including
-rolling deployments, not just latest heads. Mocked provider business logic can
-support a limited adapter claim with functional tests elsewhere. Non-participating
-external/public providers need a stated fallback (schema checks, controlled
-sandbox/smoke, real-integration evidence) and compatibility gap.
-Do not require a particular contract-testing library.
-
-Toby Clemson's broad contract definition includes data, side effects, performance
-(latency/throughput) and concurrency. Interaction/schema matching, including Pact,
-does not prove provider functionality or these non-schema obligations. Use
-appropriate component, integration, load or resilience evidence with measurable
-budgets.
+For contract, consumer/provider compatibility or external-provider evidence,
+read the [contract testing guidance](references/contract-testing.md).
 
 ## 3. Cover behavior
 
@@ -82,8 +83,9 @@ budgets.
   forbidden access and dependency failures. Assert specific error types/contracts,
   not any exception; success must reject unexpected errors.
 - Separate async schema/version compatibility from broker delivery semantics.
-  Where relevant, cover duplicates/redelivery, ordering, idempotency, correlation,
-  eventual consistency, retry limits, timeouts, dead letters and partial failures.
+  Where relevant, cover our handling of duplicates/redelivery, ordering,
+  idempotency, correlation, eventual consistency, retry limits, timeouts,
+  dead letters and partial failures, not the broker or SDK's built-in guarantees.
   Do not assume exactly-once delivery without a verified system contract.
 - Security (including authentication/authorization), performance and resilience
   are cross-cutting risk dimensions, not extra levels or mandatory at every level.
@@ -127,21 +129,5 @@ Return a compact plan/gap assessment or scoped implementation with test evidence
 
 ## Sources
 
-Owner-authorized adaptation of the owner's `Microservice-Test-Concept.md`.
-The original concept and its attachments are not distributed or changed.
-The primary guidance below is paraphrased, not copied article text, sample code
-or diagrams. Third-party research remains under its respective ownership, not
-this package's MIT license. Platform-specific examples are not stack policy.
-
-- **Toby Clemson**, [*Testing Strategies in a Microservice Architecture*](https://martinfowler.com/articles/microservice-testing/),
-  martinfowler.com, 18 November 2014 — boundaries, pyramid and E2E;
-  [broad contract definition](https://martinfowler.com/articles/microservice-testing/testing-contract-introduction.html).
-- **Ham Vocke**, [*The Practical Test Pyramid*](https://martinfowler.com/articles/practical-test-pyramid.html)
-  — credits **Mike Cohn** with the pyramid; cautions against rigid layer names.
-- **Martin Fowler**, [*Unit Test*](https://martinfowler.com/bliki/UnitTest.html)
-  (solitary/sociable units) and [*Exploratory Testing*](https://martinfowler.com/bliki/ExploratoryTesting.html).
-- **Pact**, [*What is Pact good for?*](https://docs.pact.io/getting_started/what_is_pact_good_for)
-  and [*Contract versus functional tests*](https://docs.pact.io/consumer/contract_tests_not_functional_tests)
-  — interaction matching versus functional, side-effect and performance evidence.
-- **Cucumber**, [*BDD overview*](https://cucumber.io/docs/bdd/) — collaborative
-  discovery, formulation and automation.
+Owner-authorized adaptation of the owner's `Microservice-Test-Concept.md`,
+paraphrased from primary sources. See [sources and attribution](references/sources.md).

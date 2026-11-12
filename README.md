@@ -1,13 +1,13 @@
 # agentic-persona
 
-Optional personal Copilot tooling with five skills:
+Optional personal Copilot tooling with six skills:
 
 - **working-style**: communication, collaboration, consent, quality and docs.
 - **development-architecture**: design/API and multi-repo preferences, with
   platform guidance only for matching Azure, Terraform, SPA and AI technologies.
 - **[microservice-testing](skills/microservice-testing/SKILL.md)**: risk-based test
   planning, implementation and review for existing services; scoped boundaries,
-  owner preferences and [primary sources](skills/microservice-testing/SKILL.md#sources),
+  owner preferences and [primary sources](skills/microservice-testing/references/sources.md),
   without choosing a stack or granting execution rights.
 - **[planning-tool-preferences](skills/planning-tool-preferences/SKILL.md)**:
   concise tracker-neutral work-item preferences, with an
@@ -20,6 +20,10 @@ Optional personal Copilot tooling with five skills:
   alongside on-demand C#, Python and TypeScript references.
   Repository standards and tooling win; no compliance certification, tool
   installation, architecture changes or reviewer edit rights are granted.
+- **[git-workflow](skills/git-workflow/SKILL.md)**: trunk-based branching, one
+  worktree per repository and feature, branch naming, Conventional Commits,
+  squash-merged PRs, rebasing and SemVer releases. Branch protection and release
+  tooling win; no commit, push, merge or tag permission is granted.
 
 The repository is [agentic-persona](https://github.com/hoffe86/agentic-persona);
 the plugin identity is `agentic-persona`.

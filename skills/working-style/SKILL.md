@@ -76,53 +76,29 @@ toolchain mandates.
   appropriately levelled logs.
 - Secure from the start: least privilege, input validation, auth/authz, scoped
   tokens, audited dependencies and secrets in vaults.
+- Test only scenarios, behavior, contracts and meaningful edge cases our code
+  owns. Do not re-test documented functionality or internals owned by third-party
+  libraries or SDKs. Test our integration decisions: configuration, supplied
+  calls/options, data/error mapping and our own retry/timeout policies. Exercising
+  a real dependency is valid when the assertion proves our behavior, not the
+  dependency's built-in guarantees.
 
-## Operations and verification
+## Scoped guidance
 
-Within the solution's chosen platform:
+Update documentation for essential architecture, setup, environment-variable,
+CI/CD, API or cross-repo dependency changes. When writing or reviewing docs,
+read the [documentation preferences](references/documentation.md).
+For IaC, CI/CD and operational work, read the
+[operations preferences](../development-architecture/references/operations.md).
+Apply them within the solution's chosen platform and existing consent boundaries.
 
-- Automate recurring resource, identity, network, CI/CD and secret management
-  through IaC for reproducibility and drift prevention.
-- Prefer OIDC/federated CI/CD credentials and vault-to-compute secret references;
-  do not place secrets in IaC state or ordinary environment-variable config.
-  Report conflicts with existing approved secret-delivery mechanisms.
-- Keep repos independently deployable: no deployment writes into another repo's
-  config. Resolve cross-repo values dynamically through data sources and naming.
-- Prefer reusable workflows, dev → staging → prod and main-branch staging/prod
-  gates. Build once; promote the same artifacts.
-- Automate format checks on every PR instead of debating style.
-- Name resources consistently using type, domain, service, stage and region;
-  split IaC files logically with consistent variable names.
+## Verification
 
 Before proposing a PR, perform an **author self-check, not an independent review
 verdict**: run the repo's build, tests, lint and format checks locally. Check
 standards, security, edge cases (nulls, empty collections, error paths),
 regressions and up-to-date docs. Do not claim unrun checks passed, push failing
 code or replace harness reviewers.
-
-## Documentation preferences
-
-Follow solution documentation conventions and ownership. Where the owner can
-choose, prefer:
-
-- **arc42** structure for architecture overview, operations, compliance, testing,
-  runbooks, hands-on guides and diagrams.
-- **C4**: L1–L2 context/container diagrams in central solution docs; L3–L4
-  component/code diagrams in the owning service repo.
-- **DDD**: one file per aggregate in its service repo covering purpose, invariants,
-  entities, value objects and domain events; central aggregate indexes link there.
-- **Solution docs** own the big picture, domain model, glossary, ubiquitous
-  language, event contracts, integration patterns, cross-repo indexes and
-  operating conventions. **Service repos** own aggregates, service overview,
-  APIs, data, deployment, testing, monitoring and runbooks.
-- Centralize ADRs in solution docs; services link, not duplicate. Honour existing
-  locations and human authorship/approval; this grants no permission to create
-  or move ADRs.
-- Use full GitHub URLs across repos and relative links within one, never relative
-  paths into another checkout.
-- Update docs with every essential architecture, setup, environment-variable,
-  CI/CD, API or cross-repo dependency change. Prefer `docs/README.md` as the docs
-  hub; avoid file-by-file project inventories that quickly go stale.
 
 ## Maintaining preferences
 
